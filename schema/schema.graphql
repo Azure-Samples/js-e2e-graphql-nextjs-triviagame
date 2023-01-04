@@ -1,0 +1,33 @@
+type Question {
+  id: ID!
+  question: String!
+  correctAnswer: String!
+  answers: [String!]!
+}
+
+type AnswerCheck {
+  questionId: ID!
+  correct: Boolean!
+  correctAnswer: String!
+}
+
+type Query {
+  question(
+    lastQuestionId: ID
+    upperLimit: Int!
+    language: String = "en"
+  ): Question!
+}
+
+type Mutation {
+  validateAnswer(
+    questionId: ID!
+    answer: String!
+    language: String = "en"
+  ): AnswerCheck!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
