@@ -33,6 +33,7 @@ jobs:
           output_location: "out" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
         env: 
+          ENABLE_PREVIEW_FEATURES: true
           is_static_export: true
           AZURE_COSMOSDB_ENDPOINT: ${{secrets.AZURE_COSMOSDB_ENDPOINT}}
           AZURE_COSMOSDB_KEY: ${{secrets.AZURE_COSMOSDB_KEY}}
