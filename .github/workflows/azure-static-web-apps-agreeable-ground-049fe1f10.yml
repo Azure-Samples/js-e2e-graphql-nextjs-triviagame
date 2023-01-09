@@ -1,6 +1,7 @@
 name: Azure Static Web Apps CI/CD
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -31,6 +32,13 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
+        env: 
+          AZURE_COSMOSDB_ENDPOINT: ${{secrets.AZURE_COSMOSDB_ENDPOINT}}
+          AZURE_COSMOSDB_KEY: ${{secrets.AZURE_COSMOSDB_KEY}}
+          AZURE_COSMOSDB_DATABASE_ID: ${{secrets.AZURE_COSMOSDB_DATABASE_ID}}
+          AZURE_COSMOSDB_CONTAINER_ID: ${{secrets.AZURE_COSMOSDB_CONTAINER_ID}}
+          AZURE_TRANSLATOR_KEY: ${{secrets.AZURE_TRANSLATOR_KEY}}
+          AZURE_TRANSLATOR_ENDPOINT: ${{secrets.AZURE_TRANSLATOR_ENDPOINT}}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
