@@ -34,7 +34,6 @@ jobs:
           ###### End of Repository/Build Configurations ######
         env: 
           ENABLE_PREVIEW_FEATURES: true
-          is_static_export: true
           AZURE_COSMOSDB_ENDPOINT: ${{secrets.AZURE_COSMOSDB_ENDPOINT}}
           AZURE_COSMOSDB_KEY: ${{secrets.AZURE_COSMOSDB_KEY}}
           AZURE_COSMOSDB_DATABASE_ID: ${{secrets.AZURE_COSMOSDB_DATABASE_ID}}
