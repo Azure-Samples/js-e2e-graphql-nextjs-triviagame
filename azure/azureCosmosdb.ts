@@ -2,6 +2,11 @@ import { SECRETS } from "./secretsConfig";
 import { CosmosClient, Database, Container } from "@azure/cosmos";
 
 function getClient() {
+
+  if(!SECRETS.AZURE_COSMOSDB_KEY || !SECRETS.AZURE_COSMOSDB_ENDPOINT) {
+    throw new Error("Azure CosmosDB Key or Endpoint not set");
+  }
+
   // Create SDK Client
   const client = new CosmosClient({
     key: SECRETS.AZURE_COSMOSDB_KEY,
@@ -27,6 +32,7 @@ export async function createNewDatabaseAndContainer(): Promise<Container> {
   return container;
 }
 export function getExistingContainer(): Container {
+  try{
   const client = getClient();
 
   const container = client
@@ -34,4 +40,7 @@ export function getExistingContainer(): Container {
     .container(SECRETS.AZURE_COSMOSDB_CONTAINER_NAME);
 
   return container;
+  } catch (error:any) {
+    throw new Error(error);
+  }
 }

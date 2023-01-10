@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 
 // Server side rendering
 export async function getServerSideProps() {
+  try{
   const querySpec = {
     query: "SELECT count(c.id) as count from c",
   };
@@ -24,6 +25,15 @@ export async function getServerSideProps() {
       count: items[0].count, // Should equal CONSTANTS.MAX_ITEMS_IN_DATABASE (100)
     },
   };
+  } catch (error) {
+    return {
+      props: {
+        buildOn: new Date().toLocaleString(),
+        count: 0,
+      },
+    };
+  } 
+
 }
 
 const Home: NextPage<{ count: number; buildOn: string }> = (props) => {
