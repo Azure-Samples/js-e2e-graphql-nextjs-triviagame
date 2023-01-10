@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { SECRETS } from "../azure/secretsConfig";
 import Error from 'next/error'
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
@@ -9,6 +10,18 @@ import Navbar from "./components/Navbar";
 // Server side rendering
 export async function getServerSideProps() {
   try{
+
+    if(!SECRETS 
+      || !SECRETS.AZURE_COSMOSDB_ENDPOINT 
+      || !SECRETS.AZURE_COSMOSDB_KEY 
+      || !SECRETS.AZURE_COSMOSDB_DATABASE_NAME 
+      || !SECRETS.AZURE_COSMOSDB_CONTAINER_NAME
+      ){
+        //@ts-ignore
+      throw new Error({message: "Missing secrets"});
+    }
+
+
   const querySpec = {
     query: "SELECT count(c.id) as count from c",
   };
