@@ -6,7 +6,7 @@
     "clean": "rm -rf .next",
     "dev": "next dev",
     "build": "next build",
-    "start": "npm run build && next start",
+    "start2": "npm run dev",
     "lint": "next lint",
     "format": "prettier --write .",
     "upload:build": "rm -rf upload && tsc --project tsconfig.upload.json",
