@@ -58,14 +58,7 @@ export async function getServerSideProps() {
 const Home: NextPage<{ count: number; buildOn: string, error: Error, success: boolean }> = (props) => {
   return (
     <>
-      <></>
-      {props.error && !props.success &&
         <>
-          Error: {JSON.stringify(props)}
-        </>
-      } else {
-        <>
-        Success: {JSON.stringify(props)}
         <Navbar />
           <div className={styles.container}>
             <Head>
@@ -106,7 +99,6 @@ const Home: NextPage<{ count: number; buildOn: string, error: Error, success: bo
             </footer>
           </div>
         </>
-      }
     </>
   );
 };
