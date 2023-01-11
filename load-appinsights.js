@@ -1,3 +1,5 @@
+const config = require("dotenv-flow").config;
+config();
 let appInsights = require('applicationinsights');
 appInsights
   .setup(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING)

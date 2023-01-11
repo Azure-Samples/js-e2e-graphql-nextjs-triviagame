@@ -1,5 +1,4 @@
 import { config } from "dotenv-flow";
-
 config();
 
 export const SECRETS = {

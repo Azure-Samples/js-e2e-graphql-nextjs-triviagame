@@ -33,7 +33,14 @@ This project framework provides the following features:
 
 1. git clone [repository clone url]
 2. cd [repository name]
-3. ...
+1. Rename `./env.sample` to `./env.local`.
+1. Create Cosmos DB No SQL resource. Copy resource name and key.
+1. Edit `./env.local` with Cosmos DB resource name and key.
+
+    ```
+    AZURE_COSMOSDB_ENDPOINT=https://YOUR-RESOURCE-NAME.documents.azure.com:443/
+    AZURE_COSMOSDB_KEY=
+    ```
 
 
 ## Demo

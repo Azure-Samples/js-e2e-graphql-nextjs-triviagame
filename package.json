@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf .next",
-    "dev": "node --require ./load-appinsights-dev.js node_modules/next/dist/bin/next dev -p $PORT",
+    "dev": "node --require ./load-appinsights.js node_modules/next/dist/bin/next dev -p $PORT",
     "start": "node --require ./load-appinsights.js node_modules/next/dist/bin/next start -p $PORT",
     "build": "next build",
     "lint": "next lint",
@@ -36,7 +36,6 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "cross-env": "^7.0.3",
-
     "eslint": "^8.21.0",
     "eslint-config-next": "^12.2.3",
     "prettier": "^2.7.1",
