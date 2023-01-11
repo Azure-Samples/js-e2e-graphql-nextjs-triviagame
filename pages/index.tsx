@@ -90,7 +90,7 @@ const Home: NextPage<{ count: number; buildOn: string, error: Error, success: bo
                 Powered by Azure
               </a>
               <a
-                href="https://github.com/aaronpowell/nextjs-graphql-trivia-demo"
+                href="https://github.com/Azure-Samples/js-e2e-graphql-nextjs-triviagame"
                 target="_blank"
                 rel="noopener noreferrer"
               >
