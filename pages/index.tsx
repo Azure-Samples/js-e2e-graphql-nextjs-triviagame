@@ -42,6 +42,7 @@ export async function getServerSideProps() {
     },
   };
   } catch (error) {
+    process.stdout.write(`Error: ${JSON.stringify(error)}`);
     return {
       props: {
         buildOn: new Date().toLocaleString(),
@@ -57,12 +58,14 @@ export async function getServerSideProps() {
 const Home: NextPage<{ count: number; buildOn: string, error: Error, success: boolean }> = (props) => {
   return (
     <>
-      if(props.error){
+      <></>
+      {props.error && !props.success &&
         <>
           Error: {JSON.stringify(props)}
         </>
       } else {
         <>
+        Success: {JSON.stringify(props)}
         <Navbar />
           <div className={styles.container}>
             <Head>
