@@ -41,8 +41,8 @@ export async function getServerSideProps() {
       success: true
     },
   };
-  } catch (error) {
-    process.stdout.write(`Error: ${JSON.stringify(error)}`);
+  } catch (error: unknown) {
+    console.log(`Error: ${JSON.stringify(error)}`);
     return {
       props: {
         buildOn: new Date().toLocaleString(),

@@ -55,3 +55,5 @@ To run the demo, follow these steps:
 - Link to supporting information
 - Link to similar sample
 - ...
+## App Insights
+https://medium.com/microsoftazure/enabling-the-node-js-application-insights-sdk-in-next-js-746762d92507
