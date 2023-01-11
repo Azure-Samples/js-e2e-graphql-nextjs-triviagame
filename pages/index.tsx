@@ -59,8 +59,7 @@ const Home: NextPage<{ count: number; buildOn: string, error: Error, success: bo
     <>
       if(props.error){
         <>
-          {JSON.stringify(props.error)}
-          <Error statusCode={JSON.stringify(props.error) as never} />
+          Error: {JSON.stringify(props)}
         </>
       } else {
         <>
