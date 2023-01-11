@@ -57,7 +57,7 @@ export async function getServerSideProps() {
 const Home: NextPage<{ count: number; buildOn: string, error: Error, success: boolean }> = (props) => {
   return (
     <>
-      if(error){
+      if(props.error){
         <>
           {JSON.stringify(props.error)}
           <Error statusCode={JSON.stringify(props.error) as never} />
