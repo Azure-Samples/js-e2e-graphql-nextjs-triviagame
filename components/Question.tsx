@@ -9,7 +9,7 @@ import type { ValidateAnswerModel } from "../models/ValidateAnswerModel";
 import { useRouter } from "next/router";
 import { CONSTANTS } from "../shared/constants";
 
-// <GetQuestion-GraphQL>
+// <GetQuestionGraphQL>
 const GET_QUESTION = gql`
   query getQuestion(
     $lastQuestionId: ID
@@ -27,9 +27,9 @@ const GET_QUESTION = gql`
     }
   }
 `;
-// </GetQuestion-GraphQL>
+// </GetQuestionGraphQL>
 
-// <ValidateAnswer-GraphQL>
+// <ValidateAnswerGraphQL>
 const SUBMIT_ANSWER = gql`
   mutation validateAnswer(
     $questionId: ID!
@@ -46,7 +46,7 @@ const SUBMIT_ANSWER = gql`
     }
   }
 `;
-// </ValidateAnswer-GraphQL>
+// </ValidateAnswerGraphQL>
 
 
 export const Question: NextPage<{
@@ -63,15 +63,15 @@ export const Question: NextPage<{
   const [answer, setAnswer] = useState<string | null>(null);
   const [question, setQuestion] = useState<QuestionModel | null>(null);
 
-  // <ValidateAnswer-useMutation>
+  // <ValidateAnswerUseMutation>
   const [
     validateAnswer,
     { loading: validateAnswerLoading, data: validateAnswerData },
   ] = useMutation<{ validateAnswer: ValidateAnswerModel }>(SUBMIT_ANSWER);
-  // </ValidateAnswer-useMutation>
+  // </ValidateAnswerUseMutation>
 
 
-  // <GetQuestion-useQuery>
+  // <GetQuestionUseQuery>
   const { called, loading, data, refetch, networkStatus } = useQuery<{
     question: QuestionModel;
   }>(GET_QUESTION, {
@@ -82,9 +82,9 @@ export const Question: NextPage<{
     },
     notifyOnNetworkStatusChange: true,
   });
-  // </GetQuestion-useQuery>
+  // </GetQuestionUseQuery>
 
-  // <ValidateAnswer-useEffect>
+  // <ValidateAnswerUseEffect>
   useEffect(() => {
     if (validateAnswerData) {
       let res = validateAnswerData.validateAnswer;
@@ -93,15 +93,15 @@ export const Question: NextPage<{
       setCorrectAnswer(res.correctAnswer);
     }
   }, [validateAnswerData]);
-  // </ValidateAnswer-useEffect>
+  // </ValidateAnswerUseEffect>
 
-  // <GetQuestion-useEffect>
+  // <GetQuestionUseEffect>
   useEffect(() => {
     if (data) {
       setQuestion(data.question);
     }
   }, [data]);
-  // </GetQuestion-useEffect>
+  // </GetQuestionUseEffect>
 
 
   useEffect(() => {
