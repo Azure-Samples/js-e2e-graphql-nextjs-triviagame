@@ -25,10 +25,12 @@ export class QuestionDataSource extends CosmosDataSource<
       ],
     };
 
+    // Get Question in array of a single element
     const { resources: items } = await this.container.items
       .query(querySpec)
       .fetchAll();
 
+    // Return the first element of the array
     return items[0];
   }
 }

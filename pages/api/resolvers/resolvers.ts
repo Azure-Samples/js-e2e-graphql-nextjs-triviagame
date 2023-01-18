@@ -1,10 +1,12 @@
 import { SqlQuerySpec } from "@azure/cosmos";
 import type { ApolloContext } from "../context/ApolloContext";
+import type { QuestionDbModel } from "../../../models/QuestionDbModel";
 
 const arrayRandomiser = <T>(array: T[]) =>
   array.sort(() => 0.5 - Math.random());
 
 export const resolvers = {
+  // <GetQuestion-GraphQL-Resolver-Query>
   Query: {
     async question(
       _: unknown,
@@ -15,31 +17,36 @@ export const resolvers = {
       }: { lastQuestionId: string; upperLimit: number; language: string },
       { dataSources }: ApolloContext
     ) {
-      const question = await dataSources.questions.getQuestion(
+      const question:QuestionDbModel = await dataSources.questions.getQuestion(
         lastQuestionId,
         Math.floor(Math.random() * upperLimit)
       );
 
       if (language !== "en") {
-        const tq = await dataSources.translator.translateQuestion(
+        const translatedQuestion = await dataSources.translator.translateQuestion(
           question,
           language
         );
-        return tq;
+        return translatedQuestion;
       }
 
       return question;
     },
   },
+  // </GetQuestion-GraphQL-Resolver-Query>
+
+  // <GetQuestion-GraphQL-Resolver-Field-Question>
   Question: {
     //overwrite field resolver
-    answers(question: any) {
+    answers(question: QuestionDbModel) {
       return arrayRandomiser(
         question.incorrect_answers.concat(question.correct_answer)
       );
     },
   },
+  // </GetQuestion-GraphQL-Resolver-Field-Question>
 
+  // <ValidateAnswer-GraphQL-Resolver-Mutation>
   Mutation: {
     async validateAnswer(
       _: unknown,
@@ -64,12 +71,17 @@ export const resolvers = {
         };
       }
 
+      const translatedCorrectAnswer = await dataSources.translator.translateAnswers([question.correct_answer], language);
+
+
       // translate
       return {
-        correct: question.correct_answer === answer,
+        correct: translatedCorrectAnswer[0] === answer,
         questionId,
-        correctAnswer: question.correct_answer,
+        correctAnswer: translatedCorrectAnswer[0],
       };
     },
   },
+  // </ValidateAnswer-GraphQL-Resolver-Mutation>
+
 };
