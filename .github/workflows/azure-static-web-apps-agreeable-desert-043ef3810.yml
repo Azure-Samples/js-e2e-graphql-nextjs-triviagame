@@ -3,11 +3,11 @@ name: Azure Static Web Apps CI/CD
 on:
   push:
     branches:
-      - diberry-0110-triviagame
+      - xyz
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - diberry-0110-triviagame
+      - xyz
 
 jobs:
   build_and_deploy_job:
