@@ -1,6 +1,10 @@
 const config = require("dotenv-flow").config;
 config();
 let appInsights = require('applicationinsights');
+let appInsightsConnectionString = process.env.APPLICATIONINSIGHTS_CONNECTION_STRING;
+
+if(appInsightsConnectionString && appInsightsConnectionString.length > 0) { 
+
 appInsights
   .setup(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING)
   .setAutoCollectConsole(true, true)
@@ -15,3 +19,4 @@ appInsights
   .setUseDiskRetryCaching(true);
 appInsights.defaultClient.setAutoPopulateAzureProperties(true);
 appInsights.start();
+}
