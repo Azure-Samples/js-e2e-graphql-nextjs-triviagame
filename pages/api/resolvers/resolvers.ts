@@ -6,7 +6,7 @@ const arrayRandomiser = <T>(array: T[]) =>
   array.sort(() => 0.5 - Math.random());
 
 export const resolvers = {
-  // <GetQuestionGraphQLResolverQuery>
+  // <getQuestionGraphQLResolverQuery>
   Query: {
     async question(
       _: unknown,
@@ -33,7 +33,7 @@ export const resolvers = {
       return question;
     },
   },
-  // </GetQuestionGraphQLResolverQuery>
+  // </getQuestionGraphQLResolverQuery>
 
   // <GetQuestionGraphQLResolverFieldQuestion>
   Question: {
