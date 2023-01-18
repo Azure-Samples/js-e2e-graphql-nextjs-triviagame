@@ -9,6 +9,7 @@ import type { ValidateAnswerModel } from "../models/ValidateAnswerModel";
 import { useRouter } from "next/router";
 import { CONSTANTS } from "../shared/constants";
 
+// <GetQuestion-GraphQL>
 const GET_QUESTION = gql`
   query getQuestion(
     $lastQuestionId: ID
@@ -26,7 +27,9 @@ const GET_QUESTION = gql`
     }
   }
 `;
+// </GetQuestion-GraphQL>
 
+// <ValidateAnswer-GraphQL>
 const SUBMIT_ANSWER = gql`
   mutation validateAnswer(
     $questionId: ID!
@@ -43,6 +46,8 @@ const SUBMIT_ANSWER = gql`
     }
   }
 `;
+// </ValidateAnswer-GraphQL>
+
 
 export const Question: NextPage<{
   count: number;
@@ -57,11 +62,16 @@ export const Question: NextPage<{
   const [correctAnswer, setCorrectAnswer] = useState<string | null>(null);
   const [answer, setAnswer] = useState<string | null>(null);
   const [question, setQuestion] = useState<QuestionModel | null>(null);
+
+  // <ValidateAnswer-useMutation>
   const [
     validateAnswer,
     { loading: validateAnswerLoading, data: validateAnswerData },
   ] = useMutation<{ validateAnswer: ValidateAnswerModel }>(SUBMIT_ANSWER);
+  // </ValidateAnswer-useMutation>
 
+
+  // <GetQuestion-useQuery>
   const { called, loading, data, refetch, networkStatus } = useQuery<{
     question: QuestionModel;
   }>(GET_QUESTION, {
@@ -72,7 +82,9 @@ export const Question: NextPage<{
     },
     notifyOnNetworkStatusChange: true,
   });
+  // </GetQuestion-useQuery>
 
+  // <ValidateAnswer-useEffect>
   useEffect(() => {
     if (validateAnswerData) {
       let res = validateAnswerData.validateAnswer;
@@ -81,12 +93,16 @@ export const Question: NextPage<{
       setCorrectAnswer(res.correctAnswer);
     }
   }, [validateAnswerData]);
+  // </ValidateAnswer-useEffect>
 
+  // <GetQuestion-useEffect>
   useEffect(() => {
     if (data) {
       setQuestion(data.question);
     }
   }, [data]);
+  // </GetQuestion-useEffect>
+
 
   useEffect(() => {
     if (router.locale) {

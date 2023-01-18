@@ -6,6 +6,7 @@ const arrayRandomiser = <T>(array: T[]) =>
   array.sort(() => 0.5 - Math.random());
 
 export const resolvers = {
+  // <GetQuestion-GraphQL-Resolver-Query>
   Query: {
     async question(
       _: unknown,
@@ -32,6 +33,9 @@ export const resolvers = {
       return question;
     },
   },
+  // </GetQuestion-GraphQL-Resolver-Query>
+
+  // <GetQuestion-GraphQL-Resolver-Field-Question>
   Question: {
     //overwrite field resolver
     answers(question: QuestionDbModel) {
@@ -40,7 +44,9 @@ export const resolvers = {
       );
     },
   },
+  // </GetQuestion-GraphQL-Resolver-Field-Question>
 
+  // <ValidateAnswer-GraphQL-Resolver-Mutation>
   Mutation: {
     async validateAnswer(
       _: unknown,
@@ -76,4 +82,6 @@ export const resolvers = {
       };
     },
   },
+  // </ValidateAnswer-GraphQL-Resolver-Mutation>
+
 };
