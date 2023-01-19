@@ -6,7 +6,6 @@ export default function LocaleSwitcher() {
   if (!locales) {
     return <></>;
   }
-  //const otherLocales = locales.filter((l) => l !== locale);
 
   function convertLocaleToCultureName(locale: string) {
     switch (locale) {
