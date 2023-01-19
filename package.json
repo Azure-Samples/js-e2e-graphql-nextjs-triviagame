@@ -9,8 +9,8 @@
     "build": "next build",
     "lint": "next lint",
     "format": "prettier --write .",
-    "upload:build": "rm -rf upload && tsc --project tsconfig.upload.json",
-    "upload:start": "node ./upload/azure/uploadData.js"
+    "preupload": "rm -rf upload && tsc --project tsconfig.upload.json",
+    "upload": "node ./upload/azure/uploadData.js"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
