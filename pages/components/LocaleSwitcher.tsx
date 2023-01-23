@@ -23,8 +23,6 @@ export default function LocaleSwitcher() {
         return "Italian";
       case "pt":
         return "Portuguese";
-      default:
-        return "English";
     }
   }
 
