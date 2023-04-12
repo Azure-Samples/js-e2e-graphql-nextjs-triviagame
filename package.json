@@ -22,7 +22,7 @@
     "@graphql-tools/schema": "^8.5.1",
     "apollo-datasource-cosmosdb": "^0.1.0",
     "apollo-server-nextjs": "^3.0.1",
-    "applicationinsights": "^2.3.6",
+    "applicationinsights": "^2.5.1",
     "graphql": "^16.5.0",
     "next": "^12.2.3",
     "react": "^18.2.0",
