@@ -24,7 +24,7 @@
     "apollo-server-nextjs": "^3.0.1",
     "applicationinsights": "^2.3.6",
     "graphql": "^16.5.0",
-    "next": "^12.2.3",
+    "next": "^12.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "swr": "^1.3.0",
